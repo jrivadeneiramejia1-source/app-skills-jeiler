@@ -34,3 +34,6 @@ La colección es `VoltAgent/awesome-design-md` (tu fork: `awesome-design-jeiler`
 - [ ] El `DESIGN.md` propio no copia colores, nombres ni logos de una marca.
 - [ ] El contraste del texto cumple 4,5:1.
 - [ ] Los botones táctiles miden 44 px o más.
+
+## Qué se probó (2026-11-04)
+Un Claude aparte, con solo esta skill, eligió el diseño de una app de inventario: la abrió sola, tardó 9 turnos (unos 0,22 USD), bajó la colección fuera del proyecto, comparó 3 sistemas (IBM Carbon, Airtable, Linear), tomó un principio de cada uno sin copiar sus colores y escribió un `DESIGN.md` propio. Se comprobó el contraste de los 13 colores que definió: todo el texto y los estados pasan 4,5:1 (entre 5,4 y 16,5) y el borde de los campos da 4,52 (el mínimo para componentes es 3). No se probó construyendo una pantalla con ese `DESIGN.md`.

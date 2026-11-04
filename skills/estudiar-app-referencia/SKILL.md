@@ -51,3 +51,6 @@ Objetivo: no empezar de cero y no repetir errores que otros ya cometieron. Se ap
 - [ ] Hay al menos 5 errores de otras apps para no repetir.
 - [ ] Nada de código cerrado fue descompilado ni copiado.
 - [ ] La especificación la aprobó el usuario.
+
+## Qué se probó (2026-11-04)
+Un Claude aparte, con solo esta skill, estudió apps de inventario y préstamo de equipos de laboratorio: la abrió sola, tardó 7 turnos (unos 0,18 USD), comparó 4 apps con su licencia y guardó una `ESPECIFICACION.md`. Las licencias que dio (Snipe-IT, Homebox y Part-DB: AGPL-3.0; InvenTree: MIT) se comprobaron en los repos originales y eran correctas. Distinguió bien qué se puede reutilizar (solo la MIT) y qué solo sirve como idea. Las estrellas de GitHub y las quejas de los usuarios que citó no se comprobaron. No se revisó la calidad de la especificación frente a construir la app.
