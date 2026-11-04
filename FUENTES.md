@@ -15,3 +15,10 @@ Las copias de los repos propios (forks) pueden ir atrasadas frente al original. 
 | `vercel-react-best-practices`, `vercel-composition-patterns`, `vercel-react-view-transitions` | vercel-labs/agent-skills (tu fork `agent-skills-jeiler`) | 063bee9 | 2026-08-28 | MIT (declarada en cada SKILL.md) |
 | `pwa-review` | NexFabric/pwa-review-skill | ec6b9ef | 2026-10-22 | MIT |
 | `verificar-app`, `fluidez-interfaz`, `pwa-completa`, `ci-calidad-web`, `estudiar-app-referencia`, `elegir-diseno` | Originales de este repo | — | — | MIT (ver LICENSE) |
+
+## Revisar si hay versiones nuevas (cada mes)
+```bash
+python3 -I comparar-fuentes.py
+```
+Es de solo lectura: compara cada commit de esta tabla con el más nuevo del repo de origen y dice «igual» o «HAY CAMBIOS» (o no pudo consultar). Salida 0 = todo igual, 1 = hay cambios, 2 = no se pudo consultar alguno. Que haya cambios no obliga a actualizar: primero mirar qué cambió, volver a revisar su seguridad (`SEGURIDAD.md`) y actualizar la fila de esta tabla. Probado el 2026-11-04.
+
