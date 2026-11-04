@@ -10,7 +10,7 @@ La plantilla vive en `plantilla/` dentro de esta skill y se basa en el flujo de 
 ## Reglas
 - No subir ni activar nada sin que el usuario lo pida: los cambios van a una **rama** y a un PR, nunca directo a `main`.
 - No pedir ni guardar claves. Si gitleaks encuentra una clave real, avisar sin copiarla y decir que hay que **cambiarla** (revocarla y crear otra), porque ya estuvo escrita en el historial.
-- Decir que la plantilla no se ha corrido en Actions, hasta que se corra.
+- La plantilla se corrió en Actions una vez (ver `plantilla/LEEME.md`); en un proyecto nuevo, volver a revisar la pestaña Actions en la primera ejecución.
 
 ## Proceso
 1. **Mirar el proyecto:** `package.json` (¿hay `npm test`?, ¿hay `package-lock.json`?), qué carpeta se publica y qué páginas conviene medir.

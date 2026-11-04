@@ -34,6 +34,6 @@ El instalador no pisa una skill que ya exista con el mismo nombre y que no haya 
 Mejor pocos grupos a la vez: cada skill agrega su descripción al contexto y eso gasta tokens.
 
 ## Qué falta o no está probado
-- Probadas en tarea real: `verificar-app`, `fluidez-interfaz`, `pwa-completa`, `estudiar-app-referencia` y `elegir-diseno` (detalle y límites en `PRUEBAS.md`). `pwa-review` solo se probó en parte, y `ci-calidad-web` solo se probó en local, no en GitHub Actions. Del resto solo se verificó que los archivos son válidos y que no traen comandos de riesgo.
+- Probadas en tarea real: `verificar-app`, `fluidez-interfaz`, `pwa-completa`, `estudiar-app-referencia` y `elegir-diseno` (detalle y límites en `PRUEBAS.md`). `pwa-review` solo se probó en parte, y `ci-calidad-web` se probó en GitHub Actions con una copia de tu app. Del resto solo se verificó que los archivos son válidos y que no traen comandos de riesgo.
 - `verificar-app` menciona `firebase-security-rules-auditor`, que vive en `agent-skills-jeiler`.
 - Revisión de seguridad hecha con gitleaks: ver `SEGURIDAD.md`. Origen y versión de cada skill: ver `FUENTES.md`.
