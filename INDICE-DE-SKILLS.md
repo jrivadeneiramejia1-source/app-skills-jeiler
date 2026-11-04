@@ -32,8 +32,8 @@
 | design-system | Colores, tamaños y componentes ordenados como sistema. | ui-ux-pro-max-skill (MIT) |
 | frontend-design | Que la interfaz se vea cuidada y no genérica. | Anthropic (Apache-2.0) |
 | frontend-ui-engineering | Construir componentes accesibles y bien organizados. | agent-skills (MIT) |
-| web-design-guidelines | Revisar una interfaz contra guías de diseño web. | Vercel (MIT) |
 | theme-factory | Aplicar un tema de colores y letras. | Anthropic (Apache-2.0) |
+| canvas-design | Pósters y piezas visuales en PNG o PDF (por ejemplo, tarjetas de felicitación). | Anthropic (Apache-2.0) |
 | design-taste-frontend | Evitar el aspecto «hecho por IA»; buen gusto en el diseño. | taste-skill (MIT) |
 | high-end-visual-design | Look elegante y de alta gama. | taste-skill (MIT) |
 | minimalist-ui | Diseño limpio y minimalista. | taste-skill (MIT) |
@@ -47,7 +47,26 @@
 | **fluidez-interfaz** | Que moverse entre páginas y pantallas se sienta suave, sin adornos. | Original |
 | vercel-react-view-transitions | Transiciones entre vistas en React. | Vercel (MIT) |
 
+## E. PWA y calidad automática
+| Skill | Cuándo usarla | Origen |
+|---|---|---|
+| **pwa-completa** | Construir una PWA: manifest, service worker, sin internet, datos en el dispositivo, instalación. | Original |
+| pwa-review | Auditar una PWA ya hecha (209 puntos, con evidencia). Usarla con la dirección publicada: en modo «solo código» no confirma el manifest ni el service worker (se vio al probarla sobre `asesor-prompts`). | NexFabric (MIT) |
+| **ci-calidad-web** | Revisión automática en GitHub Actions: pruebas, claves, dependencias y Lighthouse. Trae una plantilla. | Original |
+
+## F. Antes de construir
+| Skill | Cuándo usarla | Origen |
+|---|---|---|
+| **estudiar-app-referencia** | Estudiar 3 a 5 apps parecidas (licencia, funciones, errores comunes) y escribir una especificación. Trae una tabla de apps abiertas para las apps de Jeiler. | Original |
+| **elegir-diseno** | Elegir colores, letras y espacios partiendo de sistemas de diseño ya probados. | Original |
+
+## Plugins oficiales recomendados (se instalan desde el directorio de plugins, no desde este repo)
+`playwright`, `typescript-lsp`, `security-guidance`, `code-review` y `pr-review-toolkit`, del directorio oficial de Anthropic (`anthropics/claude-plugins-official`).
+
+## Evaluadas y NO incluidas
+- `voidmatcha/e2e-skills` (Apache-2.0): pensada para `@playwright/test` y agentes especiales de Playwright, con scripts propios. Las pruebas de `asesor-prompts` son scripts de Playwright hechos a mano; hoy no encajan.
+
 ## Notas
 - Las skills de Vercel `vercel-react-best-practices`, `vercel-composition-patterns` y `vercel-react-view-transitions` declaran licencia MIT en su propio `SKILL.md`.
-- `web-design-guidelines` (Vercel) **no declara licencia** en su archivo, y el repo de origen tampoco trae un archivo de licencia. Revisarlo antes de compartir este repo con otras personas.
+- Se quitó `web-design-guidelines` (Vercel): ni su archivo ni el repo de origen declaran licencia.
 - Las licencias de las demás están en `third-party/`.
