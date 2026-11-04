@@ -36,7 +36,7 @@ La fluidez no es adorno: es que el usuario entienda **de dónde viene y hacia d�
 2. **Elegir para cada uno el mecanismo más simple** de la tabla.
 3. **Implementar uno por vez**, con el menor código posible.
 4. **Comprobar:** recorrer la app con la skill `verificar-app` o `webapp-testing` a 360 px de ancho y con "reducir movimiento" activado; revisar que no haya saltos de diseño y que la respuesta al tocar siga siendo rápida.
-5. **Medir** con las herramientas del navegador (Performance, INP) o con la skill `core-web-vitals`.
+5. **Medir** con las herramientas del navegador (Performance, INP) o con la skill `core-web-vitals`. Hay una plantilla que cuenta cuántas animaciones corren al cambiar de pantalla y a los cuántos milisegundos termina la última: `node plantilla/medir-animaciones.mjs URL CARPETA_CON_PLAYWRIGHT "selector del botón 1" "selector del botón 2"` (mide a 360 px y avisa LARGA si pasa de 400 ms; también da el CLS, los saltos de diseño). Ojo: el tiempo total incluye el retraso escalonado (`animation-delay`): una lista que entra elemento por elemento puede pasar de 400 ms aunque cada animación dure poco.
 
 ## Señales de alerta
 - Una animación que el usuario tiene que esperar para seguir.
@@ -50,3 +50,6 @@ La fluidez no es adorno: es que el usuario entienda **de dónde viene y hacia d�
 - [ ] Solo se animan `transform` y `opacity`.
 - [ ] Con "reducir movimiento" la app sigue siendo clara.
 - [ ] Probado a 360 px de ancho, sin saltos de diseño.
+
+## Qué se probó (2026-11-04)
+Se midió sobre `asesor-prompts` a 360 px. Cambiar de pestaña: 5 animaciones, la última termina a los 260 ms (bien). Analizar un borrador: 17 animaciones que terminan a los 670 ms por la entrada escalonada de la lista, más que el tope de 400 ms; además hubo un salto de diseño de 0,062 (el límite bueno es 0,1, pero conviene reservar el espacio). Solo se animan color, borde y sombra (que no mueven el diseño) y hay una regla de «reducir movimiento». No se probó en un teléfono real.

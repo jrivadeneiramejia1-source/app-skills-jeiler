@@ -23,11 +23,24 @@ Objetivo: encontrar los fallos antes que el usuario. Nada se da por bueno sin ev
    - sin conexión o con conexión lenta;
    - pantalla pequeña (360 px de ancho) y letra grande del sistema;
    - pegar texto con etiquetas HTML o `<script>` en cualquier campo (¿se muestra como texto o se ejecuta?);
-   - archivos muy grandes o de tipo equivocado, si la app recibe archivos.
+   - archivos muy grandes o de tipo equivocado, si la app recibe archivos;
+   - **datos guardados dañados** (por ejemplo, escribir texto roto o `[]` en lo que la app guarda en el aparato y recargar);
+   - **importar un respaldo dañado** (JSON roto, vacío, de otra forma), si la app lo permite;
+   - **doble toque en el botón principal**: ¿guarda dos veces lo mismo?;
+   - **recargar sin internet** después de la primera visita (¿abre desde la caché?);
+   - **«reducir movimiento»** del sistema: las transiciones deben bajar a casi cero (cuidado: una duración de 0,01 milisegundos es «sin animación», no un fallo).
+
+   Hay una plantilla que hace casi todo esto sola: `plantilla/ataque-web.mjs` (Playwright). Se copia a una carpeta aparte, se escribe un `configuracion.json` con los selectores de la app (el encabezado del archivo explica cada campo) y se corre con `node ataque-web.mjs configuracion.json`. Lo que dé FALLA hay que repetirlo a mano antes de afirmarlo.
 5. **Calidad web.** Usar las skills `accessibility`, `performance` y `core-web-vitals` si están disponibles: teclado, contraste, etiquetas, tamaño de los botones táctiles (mínimo 44 px), velocidad de carga y respuesta al tocar.
 6. **Seguridad básica.** Buscar claves o tokens escritos en el código (patrones como `api_key`, `secret`, `token`, `AIza`), revisar dependencias con `npm audit` si aplica, revisar las reglas de Firebase con `firebase-security-rules-auditor`, y revisar que el código no se fíe de datos que escribe el usuario. Seguir `security-and-hardening` si está disponible.
 7. **Informe.** Tabla simple con tres columnas: **Probado y bien**, **Falló**, **No se pudo probar (y por qué)**. Cada fallo lleva: qué pasó, pasos para repetirlo, gravedad (alta, media, baja) y arreglo sugerido.
 8. **Arreglar con permiso.** Un fallo por vez: reproducirlo, arreglarlo, volver a correr la prueba y mostrar que ya pasa. Si hay `systematic-debugging` o `verification-before-completion`, seguirlas.
+
+## Qué se probó (2026-11-04)
+Se usó sobre `asesor-prompts` (una app que ya tenía 69 pruebas propias) y encontró **un fallo real** que esas pruebas no cubrían: un doble toque en «Analizar» guarda dos entradas iguales. Además confirmó que la app resiste datos dañados, archivos de respaldo dañados, texto enorme, HTML escrito por el usuario y el modo sin conexión. Con Lighthouse sacó 100 en las cuatro categorías.
+- La primera versión de la comprobación de «reducir movimiento» dio un falso fallo (confundió 0,01 ms con una animación); está corregida.
+- No se probó en un teléfono real ni con otros navegadores.
+- **Activación sola (medida con Sonnet 5.5, 3 frases, 1 a 2 veces cada una):** la skill se abrió sola en 1 de 3 frases («pruébala de arriba abajo»); en «ataca el código» y «rómpela con datos raros» el modelo se puso a trabajar directo sin abrirla. Probé una descripción más larga y no mejoró, así que quedó la original. Para asegurarlo, pedir con su nombre: «usa la skill verificar-app».
 
 ## Señales de alerta (parar y decirlo)
 - «Debería funcionar» sin haberlo ejecutado.
