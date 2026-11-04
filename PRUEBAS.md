@@ -9,7 +9,7 @@ Solo se listan las skills de este repo que se ejecutaron o se midieron. Las dem�
 | **pwa-review** | Probada solo la recolección | `scripts/collect.py` corrió sobre la app real: bajó 18 archivos, escaneó 32 y detectó 32 señales de PWA. **No se hizo la puntuación completa de 209 puntos.** La prueba fue en local, sin HTTPS. |
 | **elegir-diseno** | Solo se comprobó la fuente | La colección existe tal como dice: 84 carpetas, 84 `DESIGN.md`, de unos 24 KB cada uno (por eso la regla de leer solo 2 o 3). No se probó armando un `DESIGN.md` de principio a fin. |
 | **estudiar-app-referencia** | Solo activación | Se abrió sola en 3 de 3 frases (Haiku). No se probó el proceso completo. |
-| **pwa-completa** | Solo activación | Se abrió sola en 2 de 3 frases (Haiku). No se construyó una PWA con ella. |
+| **pwa-completa** | Probada en tarea real | Un Claude aparte, solo con esta skill, convirtió una lista de tareas en PWA. La revisión por fuera confirmó: abre sin internet, guarda y recupera datos, aguanta datos dañados, íconos y manifest bien, sin errores; Lighthouse 100/100/100/90 (SEO). No se probó en teléfono real ni en iPhone. |
 | **ci-calidad-web** | Probada en local, no en Actions | Sus pasos se corrieron uno por uno sobre una copia de `asesor-prompts` y pasaron; `actionlint` no marca errores. La comparación con el flujo de esa app encontró un hueco real (faltaba instalar el navegador de Playwright) y ya está corregido. **El flujo no se ha corrido en GitHub Actions**: queda para las verificaciones finales. |
 
 ## Sobre la «activación sola»

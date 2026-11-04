@@ -53,3 +53,7 @@ Una PWA es una web que se instala con icono, abre en pantalla completa y puede f
 - [ ] Aparece el aviso de versión nueva al actualizar.
 - [ ] Se puede exportar e importar una copia de los datos.
 - [ ] Se auditó con `pwa-review` y se probó en un teléfono real.
+
+## Qué se probó (2026-11-04)
+Se le pidió a un Claude aparte, con solo esta skill cargada, convertir una lista de tareas de un archivo en PWA. La abrió sola, tardó 11 turnos (unos 0,21 USD) y dejó manifest, íconos, `sw.js`, `_headers` y guardado en el aparato. Se revisó por fuera con un navegador automático: el service worker queda activo, el manifest y sus íconos responden, la tarea sigue tras recargar, **abre sin internet**, abre con datos guardados dañados, ofrece exportar e importar copia, sin errores de consola y sin desborde a 360 px. Lighthouse: 100 en rendimiento, accesibilidad y buenas prácticas, y 90 en SEO. No se probó en un teléfono real, ni la instalación con el botón del navegador, ni en iPhone.
+
