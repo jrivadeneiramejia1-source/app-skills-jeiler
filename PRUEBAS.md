@@ -10,7 +10,7 @@ Solo se listan las skills de este repo que se ejecutaron o se midieron. Las dem�
 | **elegir-diseno** | Solo se comprobó la fuente | La colección existe tal como dice: 84 carpetas, 84 `DESIGN.md`, de unos 24 KB cada uno (por eso la regla de leer solo 2 o 3). No se probó armando un `DESIGN.md` de principio a fin. |
 | **estudiar-app-referencia** | Solo activación | Se abrió sola en 3 de 3 frases (Haiku). No se probó el proceso completo. |
 | **pwa-completa** | Solo activación | Se abrió sola en 2 de 3 frases (Haiku). No se construyó una PWA con ella. |
-| **ci-calidad-web** | Sin probar | Su flujo de GitHub Actions no se ha corrido. |
+| **ci-calidad-web** | Probada en local, no en Actions | Sus pasos se corrieron uno por uno sobre una copia de `asesor-prompts` y pasaron; `actionlint` no marca errores. La comparación con el flujo de esa app encontró un hueco real (faltaba instalar el navegador de Playwright) y ya está corregido. **El flujo no se ha corrido en GitHub Actions**: queda para las verificaciones finales. |
 
 ## Sobre la «activación sola»
 Es si Claude abre la skill por su cuenta cuando el usuario pide algo parecido. Con 10 skills de los tres repos cargadas a la vez, en 50 frases (30 que debían activarla y 20 que no) con Haiku: **activó la correcta en 20 de 30 y nunca una equivocada (0 de 20)**. Son pocas repeticiones, con un modelo distinto al de uso diario; sirve como señal, no como medida exacta. La excepción clara es `verificar-app`: ante «ataca el código» o «rómpela con datos raros», el modelo se pone a trabajar sin abrirla (probé alargar su descripción y no cambió nada).

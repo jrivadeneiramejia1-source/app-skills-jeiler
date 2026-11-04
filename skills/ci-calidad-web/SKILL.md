@@ -15,7 +15,7 @@ La plantilla vive en `plantilla/` dentro de esta skill y se basa en el flujo de 
 ## Proceso
 1. **Mirar el proyecto:** `package.json` (¿hay `npm test`?, ¿hay `package-lock.json`?), qué carpeta se publica y qué páginas conviene medir.
 2. **Copiar la plantilla:** `calidad.yml` a `.github/workflows/`, `lighthouserc.cjs` a la raíz.
-3. **Ajustar:** el comando de pruebas, las páginas (`url`) de Lighthouse y, si no hay `package-lock.json`, cambiar `npm ci` por `npm install`.
+3. **Ajustar:** el comando de pruebas, las páginas (`url`) de Lighthouse y, si no hay `package-lock.json`, cambiar `npm ci` por `npm install`. Si las pruebas usan Playwright, dejar el paso «Navegador para las pruebas»; si no, borrarlo.
 4. **Instalar Lighthouse CI** como dependencia de desarrollo y agregar el script `lighthouse`.
 5. **Probar en local** lo que se pueda: `npm test`, y gitleaks sobre la carpeta (`gitleaks dir . --redact`).
 6. **Validar la sintaxis** del flujo con `actionlint` si está disponible.

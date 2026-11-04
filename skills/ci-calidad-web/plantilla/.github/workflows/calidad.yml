@@ -27,6 +27,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # Si las pruebas abren un navegador con Playwright (como asesor-prompts), este paso es necesario:
+      # en el computador ya hay navegador, pero el servidor de GitHub llega vacío. Si no usa Playwright, borrar el paso.
+      - name: Navegador para las pruebas (AJUSTAR)
+        run: npx playwright install --with-deps chromium
       - name: Pruebas del proyecto (AJUSTAR si usa otro comando)
         run: npm test
 
