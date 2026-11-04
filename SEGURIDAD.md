@@ -11,3 +11,10 @@ Hecha el 2026-11-04.
 - **gitleaks:** 0 hallazgos en los archivos actuales y en el historial.
 - **Comandos de riesgo:** ninguno en los scripts de las 32 skills.
 - Algunas skills traen scripts (31 archivos `.sh`, `.py` y `.mjs`, entre ellos los de `ui-ux-pro-max` y `webapp-testing`). Revisé solo las señales de la lista de arriba, no el código completo.
+
+## Fase 3 (skills nuevas, 2026-11-04)
+- Se agregó 1 skill de terceros (`pwa-review`) y 4 originales. La búsqueda de comandos de riesgo salió vacía; gitleaks sin hallazgos.
+- `pwa-review` trae un script, `scripts/collect.py` (750 líneas, solo biblioteca estándar de Python). Lo leí: descarga la página que se audita y sus archivos (máximo 80 peticiones y 5 MB cada una) y los guarda en la carpeta de salida; no usa `subprocess`, `eval` ni `exec`. Se probó en modo «solo código» sobre `asesor-prompts`. Del repo de origen se quitaron `tests/`, `README.md` y `CHANGELOG.md` para no cargar peso.
+- La plantilla `ci-calidad-web` descarga gitleaks y comprueba su checksum antes de usarlo. No se ha corrido en GitHub Actions.
+- `estudiar-app-referencia` y `elegir-diseno` piden descargar repos de terceros en una carpeta aparte. No se copia nada de ellos a este repo.
+

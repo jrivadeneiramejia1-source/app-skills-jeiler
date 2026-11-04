@@ -1,0 +1,66 @@
+# Calidad automática: corre sola cada vez que se sube un cambio (pestaña Actions del repositorio).
+# Basado en el flujo de pruebas de asesor-prompts. Ajusta los pasos marcados con (AJUSTAR).
+name: Calidad
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: calidad-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pruebas:
+    name: Pruebas
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Pruebas del proyecto (AJUSTAR si usa otro comando)
+        run: npm test
+
+  seguridad:
+    name: Claves y dependencias
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GITLEAKS_VERSION: "8.30.0"
+    steps:
+      - uses: actions/checkout@v7
+      - name: Buscar claves escritas en el código (gitleaks)
+        run: |
+          set -euo pipefail
+          base="https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}"
+          curl -sSfL -o gitleaks.tgz "${base}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          curl -sSfL -o checksums.txt "${base}/gitleaks_${GITLEAKS_VERSION}_checksums.txt"
+          grep "linux_x64.tar.gz" checksums.txt | sed 's/gitleaks_[^ ]*tar.gz/gitleaks.tgz/' | sha256sum --check
+          tar -xzf gitleaks.tgz gitleaks
+          ./gitleaks dir . --redact --no-banner
+      - name: Avisar de dependencias con fallos graves (solo avisa, no frena)
+        run: npm audit --audit-level=high
+        continue-on-error: true
+
+  lighthouse:
+    name: Velocidad y accesibilidad (Lighthouse)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Medir con Lighthouse (solo avisa; ver lighthouserc.cjs)
+        run: npm run lighthouse

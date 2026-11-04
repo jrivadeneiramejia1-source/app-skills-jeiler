@@ -13,4 +13,5 @@ Las copias de los repos propios (forks) pueden ir atrasadas frente al original. 
 | `ui-ux-pro-max`, `design-system` | nextlevelbuilder/ui-ux-pro-max-skill (tu fork `ui-ux-pro-max-skill`) | 477bcb2 | 2026-10-03 | MIT |
 | `design-taste-frontend`, `high-end-visual-design`, `minimalist-ui`, `redesign-existing-projects` | Leonxlnx/taste-skill (tu fork `taste-skill`) | ce26fc2 | 2026-09-26 | MIT |
 | `vercel-react-best-practices`, `vercel-composition-patterns`, `vercel-react-view-transitions` | vercel-labs/agent-skills (tu fork `agent-skills-jeiler`) | 063bee9 | 2026-08-28 | MIT (declarada en cada SKILL.md) |
-| `verificar-app`, `fluidez-interfaz` | Originales de este repo | — | — | MIT (ver LICENSE) |
+| `pwa-review` | NexFabric/pwa-review-skill | ec6b9ef | 2026-10-22 | MIT |
+| `verificar-app`, `fluidez-interfaz`, `pwa-completa`, `ci-calidad-web`, `estudiar-app-referencia`, `elegir-diseno` | Originales de este repo | — | — | MIT (ver LICENSE) |
