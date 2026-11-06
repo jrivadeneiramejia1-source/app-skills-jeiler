@@ -1,6 +1,6 @@
 ---
 name: pwa-completa
-description: Guía para construir una PWA (aplicación web instalable) completa: manifest, íconos, service worker, que abra sin internet, datos guardados en el dispositivo, aviso de nueva versión e instalación en el teléfono. Usar cuando el usuario diga "que se instale como app", "que funcione sin internet", "que guarde los datos en el teléfono", "hacer la PWA" o antes de convertir una web en APK. Para auditar una PWA ya hecha usar la skill pwa-review.
+description: Guía para construir una PWA (aplicación web instalable) completa, con manifest, íconos, service worker, que abra sin internet, datos guardados en el dispositivo, aviso de nueva versión e instalación en el teléfono. Usar cuando el usuario diga "que se instale como app", "que funcione sin internet", "que guarde los datos en el teléfono", "hacer la PWA" o antes de convertir una web en APK. Para auditar una PWA ya hecha usar la skill pwa-review.
 ---
 
 # PWA completa
@@ -33,6 +33,13 @@ Una PWA es una web que se instala con icono, abre en pantalla completa y puede f
    - Safari en iPhone no tiene ese evento: mostrar una guía de «Agregar a pantalla de inicio».
 8. **Avisos de seguridad:** no mezclar contenido por HTTP en una página por HTTPS; no guardar claves en el código del navegador.
 
+## Revisor automático (antes de abrir un navegador)
+Si la web está en una carpeta, correr (solo Python, sin instalar nada; no abre redes ni ejecuta la web):
+```
+python -I skills\pwa-completa\scripts\revisar_pwa.py CARPETA-DE-LA-WEB
+```
+Salida 0 = sin graves; 1 = hay ALTA; 2 = no encontró un `index.html`. Revisa el manifest (campos que Chrome exige, íconos que existan y midan lo que dicen), el service worker (que exista, responda a `fetch` y no precargue archivos inexistentes), rutas que se rompen en subcarpetas, contenido `http://`, datos sin exportar y claves escritas. Cada regla y su fuente: `references/reglas.md`. Ejemplos bueno y malo: `ejemplos/`. **No prueba** que abra sin internet: eso sigue siendo abrirla en un navegador en modo avión. Para publicar: `references/publicar-cloudflare-pages.md`.
+
 ## Proceso
 1. Revisar qué tiene la app hoy (manifest, service worker, rutas, datos).
 2. Hacer lo que falte, de la lista de arriba, **un punto a la vez**.
@@ -54,6 +61,9 @@ Una PWA es una web que se instala con icono, abre en pantalla completa y puede f
 - [ ] Se puede exportar e importar una copia de los datos.
 - [ ] Se auditó con `pwa-review` y se probó en un teléfono real.
 
-## Qué se probó (2026-11-04)
+## Qué se probó (2026-11-04 y 2026-11-06)
+**Revisor automático (2026-11-06):** ejemplo bueno (0 hallazgos) y malo (22 hallazgos, 8 graves), más 20 pruebas con cambios puntuales, 4 PWA abiertas de MDN y 2 de la plantilla; el detalle y los falsos positivos que se corrigieron están en `PRUEBAS.md` y `references/reglas.md`.
+
+**Primera prueba (2026-11-04):**
 Se le pidió a un Claude aparte, con solo esta skill cargada, convertir una lista de tareas de un archivo en PWA. La abrió sola, tardó 11 turnos (unos 0,21 USD) y dejó manifest, íconos, `sw.js`, `_headers` y guardado en el aparato. Se revisó por fuera con un navegador automático: el service worker queda activo, el manifest y sus íconos responden, la tarea sigue tras recargar, **abre sin internet**, abre con datos guardados dañados, ofrece exportar e importar copia, sin errores de consola y sin desborde a 360 px. Lighthouse: 100 en rendimiento, accesibilidad y buenas prácticas, y 90 en SEO. No se probó en un teléfono real, ni la instalación con el botón del navegador, ni en iPhone.
 

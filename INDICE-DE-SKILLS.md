@@ -50,7 +50,7 @@
 ## E. PWA y calidad automática
 | Skill | Cuándo usarla | Origen |
 |---|---|---|
-| **pwa-completa** | Construir una PWA: manifest, service worker, sin internet, datos en el dispositivo, instalación. | Original |
+| **pwa-completa** | Construir una PWA: manifest, service worker, sin internet, datos en el dispositivo, instalación. Trae `revisar_pwa.py` y una guía para publicar en Cloudflare Pages. | Original |
 | pwa-review | Auditar una PWA ya hecha (209 puntos, con evidencia). Usarla con la dirección publicada: en modo «solo código» no confirma el manifest ni el service worker (se vio al probarla sobre `asesor-prompts`). | NexFabric (MIT) |
 | **ci-calidad-web** | Revisión automática en GitHub Actions: pruebas, claves, dependencias y Lighthouse. Trae una plantilla. | Original |
 

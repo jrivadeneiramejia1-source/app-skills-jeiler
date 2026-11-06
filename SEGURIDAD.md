@@ -18,3 +18,8 @@ Hecha el 2026-11-04.
 - La plantilla `ci-calidad-web` descarga gitleaks y comprueba su checksum antes de usarlo. No se ha corrido en GitHub Actions.
 - `estudiar-app-referencia` y `elegir-diseno` piden descargar repos de terceros en una carpeta aparte. No se copia nada de ellos a este repo.
 
+## Fase 7 (2026-11-06)
+- Se agregó `pwa-completa/scripts/revisar_pwa.py` (original, solo Python estándar): solo lee archivos y tamaños de íconos PNG; no abre redes, no ejecuta el JavaScript de la web y no imprime valores de claves. Sin código de terceros nuevo.
+- **gitleaks 8.30.0** (descargado del sitio oficial, checksum `OK`) sobre los archivos: **0 hallazgos**.
+- El ejemplo malo (`pwa-mala`) trae un token inventado a propósito.
+- Se agregó `CLAUDE.md` con las reglas de Jeiler.

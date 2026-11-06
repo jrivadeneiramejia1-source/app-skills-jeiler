@@ -33,6 +33,17 @@ El instalador no pisa una skill que ya exista con el mismo nombre y que no haya 
 
 Mejor pocos grupos a la vez: cada skill agrega su descripción al contexto y eso gasta tokens.
 
+## Revisor automático de PWA
+```
+python -I skills\pwa-completa\scripts\revisar_pwa.py CARPETA-DE-LA-WEB
+```
+Solo Python (igual en Windows y en la nube): revisa manifest, íconos, service worker, rutas, contenido `http://` y claves escritas, sin abrir un navegador. Salida 0 = sin graves, 1 = hay graves. Probado con una PWA buena, una mala hecha a propósito y 6 apps reales (ver `PRUEBAS.md`). **No prueba** que abra sin internet: eso se mira en un navegador en modo avión.
+
+## Probar este repo
+```
+python -I -m unittest discover -s tests
+```
+
 ## Qué falta o no está probado
 - Probadas en tarea real: `verificar-app`, `fluidez-interfaz`, `pwa-completa`, `estudiar-app-referencia` y `elegir-diseno` (detalle y límites en `PRUEBAS.md`). `pwa-review` solo se probó en parte, y `ci-calidad-web` se probó en GitHub Actions con una copia de tu app. Del resto solo se verificó que los archivos son válidos y que no traen comandos de riesgo.
 - `verificar-app` menciona `firebase-security-rules-auditor`, que vive en `agent-skills-jeiler`.

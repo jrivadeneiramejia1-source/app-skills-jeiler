@@ -1,6 +1,6 @@
 ---
 name: ci-calidad-web
-description: Agrega a una app web un flujo de GitHub Actions que revisa la calidad solo en cada cambio: corre las pruebas, busca claves escritas en el código (gitleaks), avisa de dependencias con fallos graves y mide velocidad y accesibilidad con Lighthouse. Usar cuando el usuario diga "que se pruebe sola", "revisión automática", "que no se suban claves por error", "integración continua" o "Actions" para una app web.
+description: Agrega a una app web un flujo de GitHub Actions que revisa la calidad solo en cada cambio. Corre las pruebas, busca claves escritas en el código (gitleaks), avisa de dependencias con fallos graves y mide velocidad y accesibilidad con Lighthouse. Usar cuando el usuario diga "que se pruebe sola", "revisión automática", "que no se suban claves por error", "integración continua" o "Actions" para una app web.
 ---
 
 # Calidad automática en GitHub Actions
