@@ -23,3 +23,10 @@ Hecha el 2026-11-04.
 - **gitleaks 8.30.0** (descargado del sitio oficial, checksum `OK`) sobre los archivos: **0 hallazgos**.
 - El ejemplo malo (`pwa-mala`) trae un token inventado a propósito.
 - Se agregó `CLAUDE.md` con las reglas de Jeiler.
+
+## Fase 8 (2026-11-06, segunda ronda)
+- `medir_pwa.mjs` (original): levanta un servidor **solo en 127.0.0.1** y en un puerto libre, no deja salir peticiones a otros sitios que no pida la propia web, y no guarda nada. Usa Playwright (Apache-2.0) del entorno.
+- REA 6.5.0 (MIT) se construyó en una copia temporal y se usó de forma pasiva sobre páginas propias; el repo `rea.-` no se modificó.
+- actionlint 1.7.12 y zizmor 1.32.0 (MIT) se usaron sin copiarlos (ver `skills/pwa-completa/references/herramientas.md`).
+- Las acciones de la plantilla `ci-calidad-web` ahora van fijadas a un commit, con `persist-credentials: false`.
+- **gitleaks sobre el historial completo** (13 commits): 0 hallazgos.

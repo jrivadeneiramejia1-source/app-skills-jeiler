@@ -39,6 +39,12 @@ python -I skills\pwa-completa\scripts\revisar_pwa.py CARPETA-DE-LA-WEB
 ```
 Solo Python (igual en Windows y en la nube): revisa manifest, íconos, service worker, rutas, contenido `http://` y claves escritas, sin abrir un navegador. Salida 0 = sin graves, 1 = hay graves. Probado con una PWA buena, una mala hecha a propósito y 6 apps reales (ver `PRUEBAS.md`). **No prueba** que abra sin internet: eso se mira en un navegador en modo avión.
 
+### Medir en un navegador (abre sin internet de verdad)
+```
+node skills\pwa-completa\scripts\medir_pwa.mjs CARPETA-DE-LA-WEB
+```
+Necesita Node y Playwright. Instala el service worker, **corta internet** y recarga: 6 comprobaciones (service worker, caché, abre sin internet, manifest, íconos, errores). Probado con la PWA buena y la mala, apps reales y la web dentro de un APK. Con **REA** se puede mirar la página por dentro: `skills/pwa-completa/references/herramientas.md`.
+
 ## Probar este repo
 ```
 python -I -m unittest discover -s tests

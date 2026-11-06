@@ -40,10 +40,17 @@ python -I skills\pwa-completa\scripts\revisar_pwa.py CARPETA-DE-LA-WEB
 ```
 Salida 0 = sin graves; 1 = hay ALTA; 2 = no encontró un `index.html`. Revisa el manifest (campos que Chrome exige, íconos que existan y midan lo que dicen), el service worker (que exista, responda a `fetch` y no precargue archivos inexistentes), rutas que se rompen en subcarpetas, contenido `http://`, datos sin exportar y claves escritas. Cada regla y su fuente: `references/reglas.md`. Ejemplos bueno y malo: `ejemplos/`. **No prueba** que abra sin internet: eso sigue siendo abrirla en un navegador en modo avión. Para publicar: `references/publicar-cloudflare-pages.md`.
 
+## Medir en un navegador de verdad (antes de dar la PWA por buena)
+`revisar_pwa.py` lee archivos; **`medir_pwa.mjs` abre la PWA en Chromium** (con Playwright), instala el service worker, **corta internet y recarga** para ver si de verdad abre:
+```
+node skills\pwa-completa\scripts\medir_pwa.mjs CARPETA-DE-LA-WEB
+```
+Necesita Node y Playwright (`npm install playwright`, Apache-2.0); opciones `--playwright-desde CARPETA` y `--chromium RUTA`. Levanta un servidor propio solo en `127.0.0.1`. Salida 0 = las 6 comprobaciones PASAN (service worker activo, caché con archivos, **abre sin internet con el mismo contenido**, manifest, íconos que cargan y miden lo que dicen, sin errores de consola); 1 = algo FALLA; 2 = no pudo medir. No prueba iPhone, Firefox ni el botón de instalar del navegador. Para ver la página por dentro (recursos cargados, cachés, claves de almacenamiento) con **REA**: `references/herramientas.md`.
+
 ## Proceso
 1. Revisar qué tiene la app hoy (manifest, service worker, rutas, datos).
 2. Hacer lo que falte, de la lista de arriba, **un punto a la vez**.
-3. Probar sin internet (modo avión) y con conexión lenta, y comprobar que abre desde el icono.
+3. Probar sin internet: `medir_pwa.mjs` lo hace solo en Chromium; en el teléfono, modo avión y abrir desde el icono. Y con conexión lenta.
 4. Auditar con la skill `pwa-review` (209 puntos, con evidencia; Lighthouse ya no tiene categoría de PWA desde la versión 12).
 5. Pasar `verificar-app` antes de dar la app por terminada.
 6. Si el usuario quiere APK: `web-a-apk`.

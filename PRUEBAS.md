@@ -26,6 +26,17 @@ Solo se listan las skills de este repo que se ejecutaron o se midieron. Las dem�
 
 **No probado:** que una PWA realmente abra sin internet (el revisor no ejecuta JavaScript); la publicación en Cloudflare Pages (la guía sale de su documentación oficial, no de haberla hecho); teléfono real.
 
+## 2026-11-06, segunda ronda: navegador, REA y herramientas de flujos
+| Qué | Cómo | Resultado |
+|---|---|---|
+| **medir_pwa.mjs** (nuevo): abre la PWA en Chromium, instala el service worker, **corta internet** y recarga | PWA buena y mala de `ejemplos/`, las 2 PWA reales de la plantilla y la web dentro del APK | Buena: 6 de 6 (abre sin internet). Mala: 1 de 6 (el service worker no se instala). Reales y la del APK: 6 de 6. |
+| Comprobación cruzada con el revisor de texto | La predicción S04 («la precarga falla, el service worker no se instala») | **Confirmada** en el navegador: sin service worker y con la caché `v1` vacía (0 archivos). |
+| **REA** (`inspect-web-page`) sobre las dos páginas de ejemplo | Chromium propio con puerto de depuración | Mostró cachés (`tareas-v1` con 11.108 bytes; `v1` con 0), recursos y la clave de `localStorage`. En `workers` salió vacío aunque el service worker estaba activo: se anotó el límite. |
+| Primer intento del medidor | Comprobaba el manifest **después** de cortar internet y veía la página de error del navegador | Se reordenó: manifest y errores se leen antes de cortar internet. |
+| Plantilla `ci-calidad-web` con zizmor | Antes: 5 `unpinned-uses` y 3 `artipacked`; después de fijar a commit: 0 (actionlint 0 antes y después) | **No se volvió a correr en Actions.** |
+| Pruebas del repo | `python -I -m unittest discover -s tests` (4 pruebas nuevas del medidor; se saltan si no hay Node o Playwright) | 33 pruebas pasan. |
+| gitleaks sobre el historial (13 commits) | `--log-opts=--all` | 0 hallazgos. |
+
 ## Arranque automático (hook) — probado el 2026-11-04
 Se abrió una sesión nueva en la nube con este repo (rama de trabajo) y, sin hacer nada, `~/.claude/skills` ya tenía las **12 skills del grupo `pruebas`**, todas con la marca del instalador, incluida `verificar-app`. Es decir, el hook de inicio funciona. Solo se probó con este repo; los de `agent-skills-jeiler` y `apk-skills-jeiler` usan el mismo mecanismo pero no se abrieron en una sesión propia. Esa prueba costó unos 0,12 USD.
 
